@@ -1,0 +1,166 @@
+body{
+    background-color:rgb(197, 211, 214);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif; 
+    transition: background-color 1.5s ease; 
+}
+
+.card{
+    width: 350px;
+    background-color: white;
+    padding: 30px;
+    border: 3px solid #7ea4b1;
+    border-radius: 20px;
+    text-align: center;
+    transition: box-shadow 0.4s ease, transform 0.4s ease; 
+}
+
+.card:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 15px 35px rgba(59, 99, 114, 0.2), 
+                0 0 25px rgba(126, 164, 177, 0.6);
+}
+
+.card h1 {
+    color: #3b6372;
+    margin-top: 0;         
+}
+.card p {
+    color: #555;
+}
+
+.btn-rain{
+    padding: 12px 24px;
+    background-color: #3b6372;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rain-container {
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+/* Переписали .kap: теперь капли изначально спрятаны наверх и прозрачны */
+.kap {
+    position: absolute;
+    font-size: 24px;
+    top: -60px; /* Прячем НАД экраном */
+    opacity: 0; /* Делаем невидимыми */
+}
+
+.k1 { 
+    left: 15%; 
+}
+.k2 { 
+    left: 40%; 
+}
+.k3 { 
+    left: 65%; 
+}
+.k4 { 
+    left: 85%; 
+}
+
+.icon-zone{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
+.sun {
+    position: absolute;
+    animation: spin-sun 12s infinite linear;
+}
+@keyframes spin-sun {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.cloud {
+    position: absolute;
+    opacity: 0;             /* Изначально облако ПОЛНОСТЬЮ НЕВИДИМОЕ */
+    transform: scale(0.5);  /* И уменьшено в два раза, чтобы красиво увеличиваться при клике */
+}
+
+.checkbox-control{
+    display: none;
+}
+
+
+
+.checkbox-control:checked ~ .card .sun {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+}
+
+.checkbox-control:checked ~ .card .cloud {
+    opacity: 1;
+    animation: cloud-float 3s infinite ease-in-out; 
+}
+
+
+.checkbox-control:checked ~ .card .btn-rain {
+    background-color: #b0bec5;
+    pointer-events: none;
+}
+
+@keyframes rain-fall {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7; 
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+.checkbox-control:checked ~ .rain-container .k1 {
+    animation: rain-fall 2s infinite linear;
+}
+
+.checkbox-control:checked ~ .rain-container .k2 {
+    animation: rain-fall 1.5s infinite linear;
+}
+
+.checkbox-control:checked ~ .rain-container .k3 {
+    animation: rain-fall 2.8s infinite linear;
+}
+
+.checkbox-control:checked ~ .rain-container .k4 {
+    animation: rain-fall 1.8s infinite linear;
+}
+
+@keyframes cloud-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-16px); 
+    }
+    100% {
+        transform: translateY(0); 
+    }
+}
+
+
