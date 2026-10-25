@@ -51,12 +51,11 @@ body{
     left: 0;
     pointer-events: none;
 }
-/* Переписали .kap: теперь капли изначально спрятаны наверх и прозрачны */
 .kap {
     position: absolute;
     font-size: 24px;
-    top: -60px; /* Прячем НАД экраном */
-    opacity: 0; /* Делаем невидимыми */
+    top: -60px; 
+    opacity: 0;
 }
 
 .k1 { 
@@ -92,8 +91,8 @@ body{
 }
 .cloud {
     position: absolute;
-    opacity: 0;             /* Изначально облако ПОЛНОСТЬЮ НЕВИДИМОЕ */
-    transform: scale(0.5);  /* И уменьшено в два раза, чтобы красиво увеличиваться при клике */
+    opacity: 0;             
+    transform: scale(0.5);  
 }
 
 .checkbox-control{
